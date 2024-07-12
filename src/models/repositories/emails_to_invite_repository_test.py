@@ -1,3 +1,4 @@
+'''Tests related to emails_to_invete_repository.py'''
 import pytest
 import uuid
 from src.models.settings.db_conection_handler import db_connection_handler
@@ -17,6 +18,8 @@ def test_registry_email():
         "trip_id": trip_id,
         "email": "osvaldo@email.com"
     }
+
+    emails_to_invite_repository.registry_email(email_infos)
 
 
 @pytest.mark.skip(reason="interaction with the database")

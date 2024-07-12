@@ -1,5 +1,6 @@
-import pytest
+'''Tests related to trips_repository.py'''
 import uuid
+import pytest
 from datetime import datetime, timedelta
 from .trips_repository import TripsRepository
 from src.models.settings.db_conection_handler import db_connection_handler
