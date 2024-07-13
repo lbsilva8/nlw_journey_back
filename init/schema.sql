@@ -18,6 +18,7 @@ CREATE TABLE IF NOT EXISTS 'emails_to_invite' (
 CREATE TABLE IF NOT EXISTS 'links'(
   id TEXT PRIMARY KEY,
   trip_id TEXT NOT NULL,
-  email TEXT NOT NULL,
+  link TEXT NOT NULL,
+  title TEXT NOT NULL,
   FOREIGN KEY (trip_id) REFERENCES trips(id)
 );
