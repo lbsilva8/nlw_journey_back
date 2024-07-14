@@ -1,13 +1,23 @@
 '''Routes to be accessed by user'''
+# imports conections
 from src.models.settings.db_conection_handler import db_connection_handler
+
+# imports from repositories
 from src.models.repositories.trips_repository import TripsRepository
 from src.models.repositories.emails_to_invite_repository import EmailsToInviteRepository
 from src.models.repositories.links_repository import LinksRepository
+
+# imports from controllers
 from src.controllers.trip_creator_controller import TripCreatorController
 from src.controllers.trip_finder_controller import TripFinderController
-from src.controllers.link_creator_controller import LinkCreatorController
 from src.controllers.trip_confirmer_controller import TripConfirmerController
+
+from src.controllers.link_creator_controller import LinkCreatorController
+from src.controllers.link_finder_controller import LinkFinderController
+
+# other imports
 from flask import jsonify, Blueprint, request
+
 trips_routes_bp = Blueprint("trip_routes", __name__)
 
 
@@ -76,7 +86,7 @@ def confirm_trip(trip_id):
     return jsonify(response["body"]), response["status_code"]
 
 
-@trips_routes_bp.route("/trips/<trip_id>/confirm", methods=["POST"])
+@trips_routes_bp.route("/trips/<trip_id>/links", methods=["POST"])
 def create_trip_link(trip_id):
     '''Endpoint to create a link associated with a specific trip.
 
@@ -95,5 +105,17 @@ def create_trip_link(trip_id):
     controller = LinkCreatorController(links_repository)
 
     response = controller.create(request.json, trip_id)
+
+    return jsonify(response["body"]), response["status_code"]
+
+
+@trips_routes_bp.route("/trips/<trip_id>/links", methods=["GET"])
+def find_trip_link(trip_id):
+
+    conn = db_connection_handler.get_connection()
+    links_repository = LinksRepository(conn)
+    controller = LinkFinderController(links_repository)
+
+    response = controller.find(trip_id)
 
     return jsonify(response["body"]), response["status_code"]
