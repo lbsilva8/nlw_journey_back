@@ -111,6 +111,17 @@ def create_trip_link(trip_id):
 
 @trips_routes_bp.route("/trips/<trip_id>/links", methods=["GET"])
 def find_trip_link(trip_id):
+    ''' Endpoint to find all links associated with a specific trip.
+
+    This function handles the GET request to retrieve all links for a trip.
+    It uses the LinkFinderController to fetch the links from the database.
+
+    Args:
+        trip_id (str): The ID of the trip to retrieve links for.
+
+    Returns:
+        Response: A JSON response with the links and the status code.
+    '''
 
     conn = db_connection_handler.get_connection()
     links_repository = LinksRepository(conn)
