@@ -1,4 +1,4 @@
-'''Controller related to trip_repository.py and email_repository.py'''
+'''Controller related to trips_repository.py and emails_repository.py'''
 from typing import Dict
 import uuid
 
@@ -11,9 +11,9 @@ class TripCreatorController:
         __email_repository: Repository for managing email invitation data.
     '''
 
-    def __init__(self, trip_repository, email_repository) -> None:
-        self.__trip_repository = trip_repository
-        self.__email_repository = email_repository
+    def __init__(self, trips_repository, emails_repository) -> None:
+        self.__trips_repository = trips_repository
+        self.__emails_repository = emails_repository
 
     def create(self, body) -> Dict:
         '''Creates a new trip and associated email invitations.
@@ -32,11 +32,11 @@ class TripCreatorController:
             trip_id = str(uuid.uuid4())
             trip_infos = {**body, "id": trip_id}
 
-            self.__trip_repository.create_trip(trip_infos)
+            self.__trips_repository.create_trip(trip_infos)
 
             if emails:
                 for email in emails:
-                    self.__email_repository.registry_email({
+                    self.__emails_repository.registry_email({
                         "email": email,
                         "trip_id": trip_id,
                         "id": str(uuid.uuid4())

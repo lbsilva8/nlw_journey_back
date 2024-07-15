@@ -1,4 +1,4 @@
-'''Controller related to link_repository.py'''
+'''Controller related to links_repository.py'''
 from typing import Dict
 import uuid
 
@@ -10,8 +10,8 @@ class LinkCreatorController:
         __link_repository: Repository for managing link data.
     '''
 
-    def __init__(self, link_repository) -> None:
-        self.__link_repository = link_repository
+    def __init__(self, links_repository) -> None:
+        self.__links_repository = links_repository
 
     def create(self, body, trip_id) -> Dict:
         '''Creates a new link associated with a specific trip.
@@ -29,7 +29,7 @@ class LinkCreatorController:
             link_id = str(uuid.uuid4())
             link_infos = {**body, "id": link_id, "trip_id": trip_id}
 
-            self.__link_repository.registry_link(link_infos)
+            self.__links_repository.registry_link(link_infos)
             return {
                 "body": {"linkId": link_id},
                 "status_code": 201

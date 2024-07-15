@@ -7,13 +7,13 @@ class ActivitiesRepository:
     '''Repository for managing activities related to trips in the database.
 
     Attributes:
-        __conn (sqlite3.Connection): The database connection object.
+        __conn (sqlite3.Connection): The database connection object.    
     '''
 
     def __init__(self, conn: Connection) -> None:
         self.__conn = conn
 
-    def registry_activitie(self, activities_infos: Dict) -> None:
+    def registry_activity(self, activities_infos: Dict) -> None:
         '''Inserts a new activity into the activities table.
 
         Args:
@@ -36,7 +36,7 @@ class ActivitiesRepository:
         )
         self.__conn.commit()
 
-    def find_emails_from_trip(self, trip_id: str) -> List[Tuple]:
+    def find_activities_from_trip(self, trip_id: str) -> List[Tuple]:
         '''Retrieves all activities for a specific trip.
 
         Args:

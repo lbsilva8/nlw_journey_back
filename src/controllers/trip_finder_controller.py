@@ -12,7 +12,7 @@ class TripFinderController:
     def __init__(self, trip_repository) -> None:
         self.__trip_repository = trip_repository
 
-    def find_trip_details(self, trip_id) -> Dict:
+    def find(self, trip_id) -> Dict:
         '''Finds the details of a specific trip by its ID.
 
         Args:

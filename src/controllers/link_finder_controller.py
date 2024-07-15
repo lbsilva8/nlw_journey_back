@@ -1,4 +1,4 @@
-'''Controller related to link_repository.py'''
+'''Controller related to links_repository.py'''
 from typing import Dict
 
 
@@ -9,8 +9,8 @@ class LinkFinderController:
         __link_repository: Repository for managing link data.
     '''
 
-    def __init__(self, link_repository) -> None:
-        self.__link_repository = link_repository
+    def __init__(self, links_repository) -> None:
+        self.__links_repository = links_repository
 
     def find(self, trip_id) -> Dict:
         '''Finds all links associated with a specific trip.
@@ -24,7 +24,7 @@ class LinkFinderController:
                 On failure, the body contains an error message and a 400 status code.
         '''
         try:
-            links = self.__link_repository.find_links_from_trip(trip_id)
+            links = self.__links_repository.find_links_from_trip(trip_id)
 
             formatted_links = []
             for link in links:

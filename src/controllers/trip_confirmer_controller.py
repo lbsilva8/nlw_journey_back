@@ -1,4 +1,4 @@
-'''Controller related to trip_repository.py'''
+'''Controller related to trips_repository.py'''
 from typing import Dict
 
 
@@ -9,8 +9,8 @@ class TripConfirmerController:
         __trip_repository: Repository for managing trip data.
     '''
 
-    def __init__(self, trip_repository) -> None:
-        self.__trip_repository = trip_repository
+    def __init__(self, trips_repository) -> None:
+        self.__trips_repository = trips_repository
 
     def confirm(self, trip_id) -> Dict:
         '''Confirms a trip by updating its status.
@@ -24,7 +24,7 @@ class TripConfirmerController:
                 On failure, the body contains an error message and a 400 status code.
         '''
         try:
-            self.__trip_repository.update_trip_status(trip_id)
+            self.__trips_repository.update_trip_status(trip_id)
             return {
                 "body": None,
                 "status_code": 204
