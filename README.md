@@ -1,4 +1,4 @@
-<h1> align="center">NLW Journey</h1>
+<h1 align="center">NLW Journey</h1>
 
 <p align="center">
  <a href="#descrição-do-projeto">Descrição do projeto</a> •
